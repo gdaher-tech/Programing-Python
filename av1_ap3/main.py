@@ -7,6 +7,21 @@ from classes_CentroDistribuicao import CentroDistribuicao
 from classes_intecao_doar import IntencaoDoar
 from classes_administradores_sistema import AdministradorSistema
 
+from importacaoes import importar_doadores, importar_receptores, importar_administradores
+
+def main():
+    print("Importando dados para o sistema...")
+
+    importar_doadores('doadores.json')
+    importar_receptores('receptores.json')
+    importar_administradores('administradores.json')
+
+    print("Dados importados com sucesso!")
+
+if __name__ == "__main__":
+    main()
+
+
 def testar_doador_e_intencao():
     print("\n=== Testando Doador e Intenção de Doar ===")
     
