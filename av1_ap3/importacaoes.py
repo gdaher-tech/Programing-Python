@@ -1,8 +1,13 @@
-def importar_doadores(caminho_arquivo):
-    import json
-    from datetime import datetime
-    from classes_doador import Doador
+import json
+from datetime import datetime
+from classes_doador import Doador
+from classes_receptores import Receptor
+from classes_administradores_sistema import AdministradorSistema
 
+def importar_doadores(caminho_arquivo):
+    """
+    Importa doadores de um arquivo JSON.
+    """
     with open(caminho_arquivo, 'r', encoding='utf-8') as arquivo:
         dados = json.load(arquivo)
 
@@ -30,11 +35,11 @@ def importar_doadores(caminho_arquivo):
         novo_doador.cadastrar()
     print("Doadores importados com sucesso.")
 
-def importar_receptores(caminho_arquivo):
-    import json
-    from datetime import datetime
-    from classes_receptores import Receptor
 
+def importar_receptores(caminho_arquivo):
+    """
+    Importa receptores de um arquivo JSON.
+    """
     with open(caminho_arquivo, 'r', encoding='utf-8') as arquivo:
         dados = json.load(arquivo)
 
@@ -65,11 +70,11 @@ def importar_receptores(caminho_arquivo):
         novo_receptor.cadastrar_receptor()
     print("Receptores importados com sucesso.")
 
-    def importar_administradores(caminho_arquivo):
-        import json
-        from datetime import datetime
-        from classes_administradores_sistema import AdministradorSistema
 
+def importar_administradores(caminho_arquivo):
+    """
+    Importa administradores de um arquivo JSON.
+    """
     with open(caminho_arquivo, 'r', encoding='utf-8') as arquivo:
         dados = json.load(arquivo)
 
@@ -96,4 +101,3 @@ def importar_receptores(caminho_arquivo):
         )
         novo_admin.cadastrar()
     print("Administradores importados com sucesso.")
-

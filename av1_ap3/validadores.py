@@ -1,30 +1,29 @@
 from pessoa import Pessoa
 from datetime import date 
 
-# Validação de nome 
-def validar_nome(nome: str): 
-    # VALIDAÇÃO DE TIPO 
-    if not isinstance(nome, str):       
-        raise TypeError("Nome deve ser do tipo str")
-    
-    # VALIDAÇÃO DE VALOR 
-    nome_limpo = nome.strip()  # CRIA UM NOME LIMPO QUE É O NOME SEM ESPAÇOS EM BRANCO 
-    if not nome_limpo:  # VERIFICA SE NOME ESTÁ VAZIO OU PREENCHIDO SOMENTE COM ESPAÇOS 
-        raise ValueError("Nome deve conter letras, não pode estar vazio ou somente conter espaços")
+import re
 
-    if not nome_limpo.replace(" ", "").isalpha(): 
-        raise ValueError("Nome deve conter apenas letras e espaços")
+def validar_nome(nome: str):
+    if not isinstance(nome, str):
+        raise TypeError("Nome deve ser do tipo str")
+
+    nome_limpo = nome.strip()
+    if not nome_limpo:
+        raise ValueError("Nome não pode ser vazio")
+
+    # ✅ Permite letras, espaços, pontos, hífens e acentos
+    if not re.match(r"^[A-Za-zÀ-ÖØ-öø-ÿ\s\.\-]+$", nome_limpo):
+        raise ValueError("Nome deve conter apenas letras, espaços, pontos e hífens")
+
         
 
-# Validação de idade 
-def validar_idade(idade: int): 
-    # VALIDAÇÃO DE TIPO 
-    if not isinstance(idade, int): 
-        raise TypeError("A idade deve ser do tipo int")   
-    
-    # VALIDAÇÃO DE VALOR
-    if idade < 18 or idade > 65: 
-        raise ValueError("A idade deve estar entre 18 e 65 anos")
+def validar_idade(idade: int):
+    if not isinstance(idade, int):
+        raise TypeError("A idade deve ser do tipo int")
+
+    if idade < 0 or idade > 130:
+        raise ValueError("A idade deve estar entre 0 e 130 anos")
+
       
 
 # Validação de gênero
@@ -122,22 +121,20 @@ def validar_estadoResidencia(estado_residencia : str):
         raise ValueError("Estado Natal deve conter apenas letras e não pod estar vazio")
     
 def validar_estadoCivil(estado_civil: str):
-    # VALIDAÇÃO DE TIPO
     if not isinstance(estado_civil, str):
         raise TypeError("Estado Civil deve ser do tipo string")
 
-    # Limpar espaços e deixar tudo minúsculo para comparação
     estado_limpo = estado_civil.strip().lower()
 
-    # Lista de estados civis permitidos
-    estados_civis = ['casado', 'solteiro', 'uniao estavel', 'viuvo']
+    # Lista corrigida de estados civis permitidos
+    estados_civis = ['casado', 'solteiro', 'uniao estavel', 'viuvo', 'divorciado']
 
-    # VALIDAÇÃO DE VALOR
     if not estado_limpo or not estado_limpo.replace(" ", "").isalpha():
         raise ValueError("Estado Civil deve conter apenas letras e não pode estar vazio")
 
     if estado_limpo not in estados_civis:
         raise ValueError("Este estado civil não é válido")
+
 
 
 
