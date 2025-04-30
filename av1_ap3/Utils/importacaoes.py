@@ -1,20 +1,16 @@
 import json
 from datetime import datetime
-from classes_doador import Doador
-from classes_receptores import Receptor
-from classes_administradores_sistema import AdministradorSistema
+from Classes.classes_doador import Doador
+from Classes.classes_receptores import Receptor
+from Classes.classes_administradores_sistema import AdministradorSistema
 
 def importar_doadores(caminho_arquivo):
-    """
-    Importa doadores de um arquivo JSON.
-    """
+    print(">>> Importando doadores...")
     with open(caminho_arquivo, 'r', encoding='utf-8') as arquivo:
         dados = json.load(arquivo)
 
-    for item in dados:
+    for item in dados:  #Implementar validacao do arquivo json 
         pessoa = item["dados"]
-
-        # Corrigir formato de data para YYYY-MM-DD
         data_corrigida = datetime.strptime(pessoa["data_nascimento"], "%d/%m/%Y").date()
 
         novo_doador = Doador(
@@ -33,20 +29,20 @@ def importar_doadores(caminho_arquivo):
             contato_emergencia=pessoa['contato_emergencia']
         )
         novo_doador.cadastrar()
-    print("Doadores importados com sucesso.")
-
+        print(
+            f"[DOADOR] {pessoa['nome']} | CPF: {pessoa['cpf']} | Idade: {pessoa['idade']} | "
+            f"Tipo Sanguíneo: {pessoa['tipo_sanguineo']} | Cidade: {pessoa['cidade_residencia']}/{pessoa['estado_residencia']} | "
+            f"Status de Intenção: {item['intencao']['status']}"
+        )
 
 def importar_receptores(caminho_arquivo):
-    """
-    Importa receptores de um arquivo JSON.
-    """
+    print(">>> Importando receptores...")
     with open(caminho_arquivo, 'r', encoding='utf-8') as arquivo:
         dados = json.load(arquivo)
 
     for item in dados:
         pessoa = item["dados"]
         necessidade = item["necessidade"]
-
         data_corrigida = datetime.strptime(pessoa["data_nascimento"], "%d/%m/%Y").date()
 
         novo_receptor = Receptor(
@@ -68,20 +64,19 @@ def importar_receptores(caminho_arquivo):
             posicao_lista_espera=str(necessidade['posicao_lista_espera'])
         )
         novo_receptor.cadastrar_receptor()
-    print("Receptores importados com sucesso.")
-
+        print(
+            f"[RECEPTOR] {pessoa['nome']} | CPF: {pessoa['cpf']} | Órgão Necessário: {necessidade['orgao_necessario']} | "
+            f"Gravidade: {necessidade['gravidade_condicao']} | Lista de Espera: {necessidade['posicao_lista_espera']}"
+        )
 
 def importar_administradores(caminho_arquivo):
-    """
-    Importa administradores de um arquivo JSON.
-    """
+    print(">>> Importando administradores...")
     with open(caminho_arquivo, 'r', encoding='utf-8') as arquivo:
         dados = json.load(arquivo)
 
     for item in dados:
         pessoa = item["dados"]
         acesso = item["acesso"]
-
         data_corrigida = datetime.strptime(pessoa["data_nascimento"], "%d/%m/%Y").date()
 
         novo_admin = AdministradorSistema(
@@ -100,4 +95,6 @@ def importar_administradores(caminho_arquivo):
             senha=acesso['senha']
         )
         novo_admin.cadastrar()
-    print("Administradores importados com sucesso.")
+        print(
+            f"[ADMIN] {pessoa['nome']} | CPF: {pessoa['cpf']} | Usuário: {acesso['nome_usuario']}"
+        )

@@ -1,5 +1,5 @@
-from pessoa import Pessoa
-from validadores import *
+from .pessoa import Pessoa
+from Utils.validadores import *
 
 class Receptor(Pessoa):
     """

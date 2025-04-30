@@ -1,6 +1,6 @@
-from pessoa import Pessoa
-from validadores import *
-from classes_doador import Doador
+from .pessoa import Pessoa
+from Utils.validadores import *
+from .classes_doador import Doador
 from datetime import date
 
 
@@ -19,7 +19,7 @@ class AdministradorSistema(Pessoa):
     """
 
     banco_administradores = {}
-    banco_orgaos = {}
+    banco_orgaos = {}   # Implementar tipo de orgao junto 
     banco_tipos_orgao = {}
     banco_centros_distribuicao = {}
 

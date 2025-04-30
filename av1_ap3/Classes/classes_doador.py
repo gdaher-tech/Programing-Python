@@ -1,5 +1,5 @@
-from pessoa import Pessoa
-from validadores import *
+from .pessoa import Pessoa
+from Utils.validadores import *
 from uuid import uuid4
 
 class Doador(Pessoa):
@@ -113,7 +113,7 @@ class Doador(Pessoa):
         """
         Busca o doador pelo CPF no banco de doadores.
         """
-        return Doador.banco_doador.get(cpf)
+        return Doador.banco_doador.get(cpf) # Verificar o que retorna 
 
     def excluir(self):
         """

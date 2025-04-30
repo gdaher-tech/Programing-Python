@@ -1,25 +1,18 @@
 from datetime import date
-
-from classes_doador import Doador
-from classes_receptores import Receptor
-from classes_doacao import Doacao
-from classes_CentroDistribuicao import CentroDistribuicao
-from classes_intecao_doar import IntencaoDoar
-from classes_administradores_sistema import AdministradorSistema
-
-from importacaoes import importar_doadores, importar_receptores, importar_administradores
+from Classes import Doador, Receptor, AdministradorSistema, IntencaoDoar, Doacao, CentroDistribuicao
+from Utils.importacaoes import importar_doadores, importar_receptores, importar_administradores
 
 def main():
-    print("Importando dados para o sistema...")
+    print("Importando dados do sistema...\n")
 
-    importar_doadores('doadores.json')
-    importar_receptores('receptores.json')
-    importar_administradores('administradores.json')
-
-    print("Dados importados com sucesso!")
-
-if __name__ == "__main__":
-    main()
+    try:
+        importar_doadores('Utils/doadores.json')
+        importar_receptores('Utils/receptores.json')
+        importar_administradores('Utils/administradores.json')
+    except FileNotFoundError as e:
+        print(f"Erro: arquivo não encontrado - {e.filename}")
+    except Exception as e:
+        print(f"Ocorreu um erro inesperado: {e}")
 
 
 def testar_doador_e_intencao():

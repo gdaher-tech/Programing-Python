@@ -1,4 +1,4 @@
-from pessoa import Pessoa
+from Classes import pessoa
 from datetime import date 
 
 import re

@@ -1,5 +1,5 @@
 from datetime import date, timedelta
-from validadores import (
+from av1_ap3.Utils.validadores import (
     validar_nome,
     validar_idade,
     validar_genero,

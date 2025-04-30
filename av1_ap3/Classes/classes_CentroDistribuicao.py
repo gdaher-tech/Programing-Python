@@ -104,13 +104,6 @@ class CentroDistribuicao:
     }
 
 
-        return{
-            "id": self.__id,
-            "estado": self.estado, 
-            "cidade": self.cidade, 
-            "endereco": self.endere,
-            "telefone": self.telefone
-        }
     
 
 
