@@ -4,6 +4,8 @@ from Classes.classes_doador import Doador
 from Classes.classes_receptores import Receptor
 from Classes.classes_administradores_sistema import AdministradorSistema
 
+# Verificacao se idade condiz com a data de nascimento 
+
 def importar_doadores(caminho_arquivo):
     print(">>> Importando doadores...")
     with open(caminho_arquivo, 'r', encoding='utf-8') as arquivo:
@@ -63,7 +65,7 @@ def importar_receptores(caminho_arquivo):
             contato_emergencia=pessoa['contato_emergencia'],
             posicao_lista_espera=str(necessidade['posicao_lista_espera'])
         )
-        novo_receptor.cadastrar_receptor()
+        novo_receptor.cadastrar()
         print(
             f"[RECEPTOR] {pessoa['nome']} | CPF: {pessoa['cpf']} | Órgão Necessário: {necessidade['orgao_necessario']} | "
             f"Gravidade: {necessidade['gravidade_condicao']} | Lista de Espera: {necessidade['posicao_lista_espera']}"

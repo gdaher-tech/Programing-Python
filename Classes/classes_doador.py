@@ -16,7 +16,7 @@ class Doador(Pessoa):
 
     def __init__(self, nome, idade, genero, data_nascimento, cidade_natal, estado_natal,
                  cpf, profissao, cidade_residencia, estado_residencia, estado_civil,
-                 tipo_sanguineo, contato_emergencia):
+                 tipo_sanguineo, contato_emergencia, orgaos_disponiveis = None):     # Criei orgaos disponiveis com valor nulo 
         super().__init__(nome, idade, genero, data_nascimento, cidade_natal, estado_natal,
                          cpf, profissao, cidade_residencia, estado_residencia, estado_civil)
 
@@ -24,6 +24,7 @@ class Doador(Pessoa):
         self._contato_emergencia = contato_emergencia
         self.intencao_doar = None
         self.doacao = None
+        self.orgaos_disponiveis = orgaos_disponiveis or []
 
     def cadastrar(self):
         """
